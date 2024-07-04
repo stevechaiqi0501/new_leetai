@@ -10,7 +10,7 @@
 
 {% block contents %}
 <div class = "container">
-    <div class = '.my-div-style'>
+    <div class = 'my-div-style'>
         <form method="post">
             <!--POSTリクエストの送信の時にこのタグをつけないとエラーになる-->
             {% csrf_token %}
@@ -34,7 +34,7 @@
                 </label>
                 {{ field }}
                 <!--逆に、こっちはフィールドエラー-->
-                {[ field.errors ]}
+                {{ field.errors }}
             </div>
             {% endfor %}
 

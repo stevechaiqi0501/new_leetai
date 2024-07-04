@@ -22,8 +22,11 @@
   <!-- Core theme CSS (includes Bootstrap) -->
   <link href="{% static 'css/one-page-wonder.css' %}" rel="stylesheet">
 
+
   <!-- My style -->
-  <body>
+   <link rel="stylesheet" type="text/css" href="{% static 'css/mystyle.css' %}">
+   {% block head %}{% endblock %}
+<body>
     <div id="wrapper">
       <!-- Navigation -->
       <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
@@ -60,6 +63,6 @@
     </div>
     <!-- Bootstrap core JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+</body>
   </html>
   
