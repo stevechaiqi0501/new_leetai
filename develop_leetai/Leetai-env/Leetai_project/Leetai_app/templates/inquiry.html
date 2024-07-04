@@ -2,7 +2,7 @@
 
 <!-- 親子関係になっているblockタグと extendタグ　
  親のhtmlに{% block コンテンツ名 %}と{% endblock %}で埋め込む枠をつくり
- 子供のhtmlに{% extends '親html' %}{% endblock %}で対応-->
+ 子供のhtmlにで対応-->
 
 {% block title %}お問い合わせ| Leetai {% endblock %}
 
@@ -10,7 +10,7 @@
 
 {% block contents %}
 <div class = "container">
-    <div class = 'my-div-style'>
+    <div class = '.my-div-style'>
         <form method="post">
             <!--POSTリクエストの送信の時にこのタグをつけないとエラーになる-->
             {% csrf_token %}
