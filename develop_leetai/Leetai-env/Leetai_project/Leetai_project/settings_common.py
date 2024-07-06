@@ -1,18 +1,8 @@
 from django.contrib.messages import constants as messages 
 from pathlib import Path
 import os
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-SECRET_KEY = 'django-insecure-b6w4u!g9zzt8jzz)%ybqrsqe*c$d!+dgie*ik#pm!*%gpt&fsp'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -27,7 +17,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #アプリ名.apps.pyのLeetai-appを定義しているクラスを指定
     'Leetai_app.apps.LeetaiAppConfig'
-    'accounts.apps.AccountsConfig'
 ]
 
 MIDDLEWARE = [
@@ -120,58 +109,15 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #エラーが発生した時の記録の残し方の変更
 
-LOGGING = {
-    'version':1,#1固定
-    'disable_existing_loggers':False,#デフォの設定を無効化する
-    
-    #ログのエントリーポイントがここ
-    'loggers':{
-        'django':{
-            'handlers':['console'],#出力先を決定
-            'level':'INFO',#出力にあたってどのレベルまで表示するのか
-        },
-        
-        'Leetai_app':{
-            'handlers':['console'],
-            'level':'DEBUG',
-        }, 
-    },
-    
-    'handlers':{
-        'console':{
-            'level':'DEBUG',
-            'class':'logging.StreamHandler',#コンソールに出力するためのハンドラ
-            'formatter':'dev'#出力形式を決定
-        },
-    },
-    
-    'formatters':{
-        #DEVがここにあたる、表示のフォーマットをここで決定している
-        'dev':{
-            'format':'\t'.join([
-                '%(asctime)s'
-                '[%(levelname)s]'
-                '%(pathname)s(Line:%(lineno)d)'
-                '%(message)s'
-            ])
-        }
-    }
-    }
-
 #静的ファイルの位置を指定
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR,'static'),
 )
 
-# settings.py
-
 
 MESSAGE_TAGS = {
-    messages.ERROR:'alert alert-danger role="alert"',
-    messages.WARNING:'alert alert-warning role="alert"',
-    messages.SUCCESS:'alert alert-succsee role="alert"',
-    messages.INFO:'alert alert-info role="alert"'
+    messages.ERROR:'alert alert-danger',
+    messages.WARNING:'alert alert-warning',
+    messages.SUCCESS:'alert alert-succsee',
+    messages.INFO:'alert alert-info'
 }
-
-#ユーザーモデルをこれでデフォから変更できる
-AUTH_USER_MODEL = 'accounts.CustomUser'

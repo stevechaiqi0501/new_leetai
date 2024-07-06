@@ -53,11 +53,26 @@
         </div>
       </nav>
       {% block header %}{% endblock %}
+
+      {% if messages %}
+      <div class="container my-div-style">
+        <div class="alert alert-success" role="alert">
+          <ul class="messages" style="list-style: none;" >
+            {% for msg in messages %}
+            <!--tagはサクセスなのかエラーなのかを動的に評価して実行-->
+              <li {% if msg.tags %} class="{{ msg.tags }}" {% endif %}>{{ msg }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      {% endif %}
+      
+
       {% block contents %}{% endblock %}
       <!-- Footer -->
       <footer class="py-5 bg-black">
         <div class="container px-5">
-          <p class="m-0 text-center text-white small">Copyright &copy; Private Dairy 2021</p>
+          <p class="m-0 text-center text-white small">Copyright &copy; Leetai 2024</p>
         </div>
       </footer>
     </div>

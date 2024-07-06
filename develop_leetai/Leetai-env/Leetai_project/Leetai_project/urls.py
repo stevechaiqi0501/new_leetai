@@ -17,7 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path , include
 
+app_name = 'Leetai_app' 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('Leetai_app.urls'))
+    path('', include(('Leetai_app.urls', 'Leetai_app'), namespace='Leetai_app'))
 ]
