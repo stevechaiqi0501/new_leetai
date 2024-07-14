@@ -21,5 +21,7 @@ app_name = 'Leetai_app'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(('Leetai_app.urls', 'Leetai_app'), namespace='Leetai_app'))
+    path('', include(('Leetai_app.urls', 'Leetai_app'), namespace='Leetai_app')),
+    #デフォでallauthがもっているルーティング（デフォルトルーティング）
+    path('accounts/',include('allauth.urls')),
 ]

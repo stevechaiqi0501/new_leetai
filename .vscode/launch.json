@@ -1,0 +1,21 @@
+ {
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "Python: Django",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/develop_leetai/Leetai-env/Leetai_project/manage.py",
+            "args": [
+                "runserver",
+                "--settings=Leetai_project.settings_dev"
+            ],
+            "django": true,
+            "env": {
+                "DJANGO_SETTINGS_MODULE": "Leetai_project.settings_dev"
+            },
+            "envFile": "${workspaceFolder}/.env",
+        }
+    ]
+}

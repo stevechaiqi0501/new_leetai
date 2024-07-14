@@ -47,17 +47,3 @@ LOGGING = {
         }
     }
     }
-
-#静的ファイルの位置を指定
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR,'static'),
-)
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-MESSAGE_TAGS = {
-    messages.ERROR:'alert alert-danger',
-    messages.WARNING:'alert alert-warning',
-    messages.SUCCESS:'alert alert-succsee',
-    messages.INFO:'alert alert-info'
-}
