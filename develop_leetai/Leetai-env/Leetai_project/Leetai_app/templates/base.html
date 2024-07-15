@@ -54,10 +54,10 @@
               <li class="nav-item">
                 <a class="nav-link {% block active_login %}{% endblock %}" href="{% url 'account_login' %}">Log In</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link {% block active_profile %}{% endblock %}" href="#">Profile</a>
-              </li>
               {% endif %}
+              <li class="nav-item">
+                <a class="nav-link {% block active_profile %}{% endblock %}" href="{% url 'accounts:profile' %}">Profile</a>
+              </li>
             </ul>
           </div>
         </div>

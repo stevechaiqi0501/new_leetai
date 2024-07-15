@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block title %}プロフィールの編集 | Private Diary{% endblock %}
+
+{% block active_profile %}active{% endblock %}
+
+
+{% block contents %}
+<div class="container">
+    <div class="row">
+        <div class="my-div-style">
+            {% for profile in customuser_list %}
+            <td>
+                <p>{{ profile.username }}</p>
+            </td>
+            <td>
+                <p>{{ profile.email }}</p>
+                <p>{{ profile.sex }}</p>
+            </td>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
