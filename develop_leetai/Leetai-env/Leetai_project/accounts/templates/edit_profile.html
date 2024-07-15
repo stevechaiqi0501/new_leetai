@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 
-{% block title %}プロフィールの編集 | Private Diary{% endblock %}
+{% block title %}プロフィール | Private Diary{% endblock %}
 
 {% block active_profile %}active{% endblock %}
 
@@ -11,16 +11,34 @@
     <div class="row">
         <div class="my-div-style">
             {% for profile in customuser_list %}
+            {% if profile.picture %}
+            <td>{{ profile.picure }}</td>
+            {% else %}
+            <p>アイコンが設定されていません</p>
+            {% endif %}
             <td>
                 <p>{{ profile.username }}</p>
             </td>
             <td>
                 <p>{{ profile.email }}</p>
-                <p>{{ profile.sex }}</p>
+
+                {% if profile.sex is true %}
+                <p>女性</p>
+                {% else %}
+                <p>男性</p>
+                {% endif %}
+                {% if profile.discription %}
+                <p>{{ profile.discription }}</p>
+                {% else %}
+                <p>自己紹介は記述されておりません</p>
+                {% endif %}
             </td>
+           
+            <a class="btn btn-primary" href="{% url 'accounts:edit' profile.id %}">プロフィールの編集</a>
             {% endfor %}
 
         </div>
+        
     </div>
 </div>
 {% endblock %}
