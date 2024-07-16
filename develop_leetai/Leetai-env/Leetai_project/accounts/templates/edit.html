@@ -3,9 +3,15 @@
 
 {% block title %}プロフィール | Private Diary{% endblock %}
 
-{% block active_profile %}active{% endblock %}
-<form method="post">
-            {% csrf_token %}
-            <table>{{ form.as_table }}</table>
-            <p><input type="submit" value="送信"></p>
-        </form>
+{% block contents %}
+<div class="container">
+    <div class="row">
+        <div class="my-div-style">
+            <form method="post">{% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Update">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

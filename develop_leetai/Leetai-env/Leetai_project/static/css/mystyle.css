@@ -1,3 +1,8 @@
 .my-div-style{
     margin-top: 6rem;
 }
+
+.my-header-style{
+    z-index: 1;
+  position: relative;
+}

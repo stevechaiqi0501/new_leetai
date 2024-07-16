@@ -39,3 +39,5 @@ class InquiryView(generic.FormView):
 
         return super().form_invalid()
     
+class Question_baseView(generic.TemplateView):
+    template_name="question_base.html"
