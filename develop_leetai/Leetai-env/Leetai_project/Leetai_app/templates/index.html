@@ -12,7 +12,7 @@
       <h1 class="masthead-heading mb-0">Leetai</h1>
       <h2 class="masthead-subheading mb-0">台湾留学の知恵袋</h2>
       {% if user.is_authenticated %}
-      <a href="{% url 'Leetai:try' %}" class="btn btn-primary btn-xl rounded-pill mt-5">ask a Question</a>
+      <a href="{% url 'Leetai:question' %}" class="btn btn-primary btn-xl rounded-pill mt-5">ask a Question</a>
       {% else %}
       <a href="{% url 'account_login' %}" class="btn btn-primary btn-xl rounded-pill mt-5">LOG IN</a>
       {% endif %}

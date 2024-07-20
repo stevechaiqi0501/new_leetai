@@ -5,6 +5,6 @@ app_name = 'Leetai'
 urlpatterns = [
     path('',views.IndexView.as_view(),name='index'),
     path('inquiry',views.InquiryView.as_view(),name="inquiry"),
-    path('try',views.Question_baseView.as_view(),name="try")
-    
+    path('question',views.QuestionlistView.as_view(),name="question"),
+    path('question/<int:pk>',views.DetailQuestionView.as_view(),name="question_detail")
 ]

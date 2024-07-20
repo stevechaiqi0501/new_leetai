@@ -1,10 +1,12 @@
+from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.views import generic
 from .forms import InquiryForm
 from django.urls import reverse_lazy
 from django.contrib import messages
 import logging
-
+from .models import Question
+from accounts.models import CustomUser
 """
 ログを記録するときに、どこのモジュールから受け取ったか出力するための__name__
 loggerでオブジェクトを取得、中身はloggingクラスのgetLoggerメソッド、そしてどこのモジュールから受け取ったか出力するための__name__
@@ -39,5 +41,13 @@ class InquiryView(generic.FormView):
 
         return super().form_invalid()
     
-class Question_baseView(generic.TemplateView):
-    template_name="question_base.html"
+class QuestionlistView(generic.ListView):
+    template_name="question_list.html"
+    model = Question
+    paginate_by = 10
+    
+class DetailQuestionView(generic.DetailView):
+    model = Question
+    template_name='question_detail.html'
+    
+    

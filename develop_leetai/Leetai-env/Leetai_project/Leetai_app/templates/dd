@@ -1,0 +1,43 @@
+{% extends 'question_base.html' %}
+{% load static %}
+
+{% block title %}質問 | Leetai {% endblock %}
+
+{% block active_diary_list %}active{% endblock %}
+
+{% block head %}
+<link href="{% static 'css/clean-page.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block contents %}
+<div class="container px-4 px-lg-5 my-div-style">
+  <div class="row gx-4 gx-lg-5 justify-content-center">
+    <div class="col-md-10 col-lg-8 col-xl-7">
+      <div class="d-flex justify-content-end mb-4">
+        <a class="btn btn-primary float-right" href="#">新規作成</a>
+      </div>
+      {% for questions in uestion_list %}
+      <div class="post-preview">
+        <a href="#">
+          <h2 class="post-title">
+            {{ questions.title }}
+          </h2>
+          <h3 class="post-subtitle">
+            {{ questions.content|truncatechars:20 }}
+          </h3>
+        </a>
+        <p class="post-meta">{{ questions.datetime }}</p>
+      </div>
+      <hr class="my-4">
+      {% empty %}
+      <p>日記がありません。</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+<a href="{% url 'account_login' %}" class="btn btn-primary btn-xl float-left">未解決の質問</a>
+<a href="{% url 'account_login' %}" class="btn btn-primary btn-xl  float-right">解決済みの質問</a>
+
+ <div style="position: fixed; bottom:20px; right: 20px;z-index: 1000;"

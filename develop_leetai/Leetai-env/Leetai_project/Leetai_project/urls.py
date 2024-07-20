@@ -16,7 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path , include
-
+from django.contrib.staticfiles.urls import static 
+from . import settings
 app_name = 'Leetai_app' 
 
 urlpatterns = [
@@ -26,3 +27,5 @@ urlpatterns = [
     path('accounts/',include('allauth.urls')),
     path('accounts/',include('accounts.urls'))
 ]
+
+urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
