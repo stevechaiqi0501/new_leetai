@@ -2,6 +2,8 @@ from django import forms
 from django.core.mail import EmailMessage
 import os
 
+from .models import Question
+
 class InquiryForm(forms.Form):
     name = forms.CharField(label='お名前',max_length=30)
     email = forms.EmailField(label='メールアドレス')
@@ -59,3 +61,13 @@ class InquiryForm(forms.Form):
         
         message = EmailMessage(subject=subject,body=message, from_email=from_email,to=to_list,cc=cc_list)
         message.send()
+        
+class QuestionCreateForm(forms.ModelForm):
+    class Meta:
+        model = Question
+        fields = ['title','content','photo',]
+        
+        def __init__(self,*args,**kwargs):
+            super().__init__(*args,**kwargs)
+            for field in self.fields.values():
+                field.widget.attrs['class']='form-control'

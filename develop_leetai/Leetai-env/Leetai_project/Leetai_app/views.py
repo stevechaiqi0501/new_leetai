@@ -1,12 +1,16 @@
 from django.db.models.query import QuerySet
+from django.forms import BaseModelForm 
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import generic
-from .forms import InquiryForm
+from .forms import InquiryForm ,QuestionCreateForm
 from django.urls import reverse_lazy
 from django.contrib import messages
 import logging
-from .models import Question
+from .models import Question,Answer
 from accounts.models import CustomUser
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 """
 ログを記録するときに、どこのモジュールから受け取ったか出力するための__name__
 loggerでオブジェクトを取得、中身はloggingクラスのgetLoggerメソッド、そしてどこのモジュールから受け取ったか出力するための__name__
@@ -46,8 +50,39 @@ class QuestionlistView(generic.ListView):
     model = Question
     paginate_by = 10
     
-class DetailQuestionView(generic.DetailView):
+class QuestionDetailView(generic.DetailView):
     model = Question
     template_name='question_detail.html'
     
+class QuestionCreateView(generic.CreateView):
+    model = Question
+    template_name = 'question_create.html'
+    form_class = QuestionCreateForm
+    success_url = reverse_lazy('Leetai:question:list')
     
+    def form_valid(self, form):
+        '''
+        commit=Falseでsaveメソッドを呼び出し、データベースに保存する前のモデルインスタンスを取得
+        その後は自由に属性の設定ができる
+        '''
+        Question = form.save(commit=False)
+        Question.users = self.request.user
+        Question.save()
+        messages.success(self.request,'質問を投稿しました')
+        return super().form_valid(form)
+    
+    def form_invalid(self, form):
+        messages.error(self.request,'投稿に失敗しました')
+        return super().form_invalid(form)
+
+class AnswerDetailview(generic.DetailView):
+    template_name = 'Answer_detail.html'
+    model = Answer
+    
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if 'bestanswer' in request.POST:
+            self.object.bestanswer = not self.object.bestanswer
+            self.object.save()
+            return HttpResponseRedirect(reverse('question_list', args=[self.object.pk]))
+        return super().post(request, *args, **kwargs)

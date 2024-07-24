@@ -13,7 +13,7 @@
             <strong>タイトル</strong>
         </div>
         <div class="col-9">
-            {{ object.title }}
+            {{ object.title }}  
         </div>
     </div>
 
@@ -29,16 +29,7 @@
     </div>
  
     <hr>
-
-    <div class="row">
-        <div class="col-3">
-            <strong>内容</strong>
-        </div>
-        <div class="col-9">
-            {{ object.content|linebreaksbr }}
-        </div>
-
-        {% if object.picture %}
+    {% if object.picture %}
 
         <div class="row">
             <div class="col-3">
@@ -50,6 +41,16 @@
         </div>
 
         {% endif %}
+
+    <div class="row">
+        <div class="col-3">
+            <strong>内容</strong>
+        </div>
+        <div class="col-9">
+            {{ object.content|linebreaksbr }}
+        </div>
+
+        
     </div>
 
     <hr>
@@ -64,22 +65,27 @@
     </div>
 
     <hr>
-    <hr>
-    <hr>
+    
+    <h2>
+        <a style="color: aqua;"> {{ question.answer_set.all|length }}</a>件のアンサー
+    </h2>
 
-{% if object.answer_set.all %}
-    <div class="container px-4 px-lg-5 my-div-style">
+
+{% if question.answer_set.all %}
+    <div class="container px-4  my-div-style">
         <div class="row gx-4 gx-lg-5 justify-content-center">
           <div class="col-md-10 col-lg-8 col-xl-7">
-            {% for reply in object.answer_set.all %}
+            
+            {% for reply in question.answer_set.all %}
             <div class="post-preview">
-              <a href="{% url 'Leetai:question_detail' questions.pk %}">
-                <h2 class="post-title">
-                  {{ reoly.title }}
-                </h2>
-                <h3 class="post-subtitle">
-                  {{ reply.content|truncatechars:20 }}
-                </h3>
+                <a href="{% url 'Leetai:answer_detail' reply.pk %}">
+                    <h2 class="post-title">
+                      {{ reoly.title }}
+                    </h2>
+
+                    <h3 class="post-subtitle">
+                          {{ reply.content|truncatechars:20 }}
+                    </h3>
               </a>
               <p class="post-meta">{{ reply.datetime }}</p>
             </div>
