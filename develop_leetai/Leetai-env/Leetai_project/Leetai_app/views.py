@@ -11,10 +11,12 @@ from .models import Question,Answer
 from accounts.models import CustomUser
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+
 """
 ログを記録するときに、どこのモジュールから受け取ったか出力するための__name__
 loggerでオブジェクトを取得、中身はloggingクラスのgetLoggerメソッド、そしてどこのモジュールから受け取ったか出力するための__name__
 """    
+
 logger = logging.getLogger(__name__)
 
 class IndexView(generic.TemplateView):
@@ -84,5 +86,5 @@ class AnswerDetailview(generic.DetailView):
         if 'bestanswer' in request.POST:
             self.object.bestanswer = not self.object.bestanswer
             self.object.save()
-            return HttpResponseRedirect(reverse('question_list', args=[self.object.pk]))
+            return HttpResponseRedirect(reverse('question'))
         return super().post(request, *args, **kwargs)
