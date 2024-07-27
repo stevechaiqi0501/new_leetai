@@ -65,14 +65,15 @@
     </div>
 
     <hr>
-    
-    <div class="row">
-        <div class="col-3">
-            <a href="{{ self.object }}">
-                 <strong>ベストアンサーに選ぶ</strong>
-            </a>
+    {% if Question.users.username == user.username %}
+        <div class="row">
+            <div class="col-3">
+                <a href="{{ self.object }}">
+                    <strong>ベストアンサーに選ぶ</strong>
+                </a>
+            </div>
         </div>
-    </div>
+    {% endif %}
 
 </ul>
 

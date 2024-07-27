@@ -60,7 +60,7 @@ class QuestionCreateView(generic.CreateView):
     model = Question
     template_name = 'question_create.html'
     form_class = QuestionCreateForm
-    success_url = reverse_lazy('Leetai:question:list')
+    success_url = reverse_lazy('Leetai_app:question')
     
     def form_valid(self, form):
         '''
@@ -82,9 +82,12 @@ class AnswerDetailview(generic.DetailView):
     model = Answer
     
     def post(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        if 'bestanswer' in request.POST:
-            self.object.bestanswer = not self.object.bestanswer
-            self.object.save()
-            return HttpResponseRedirect(reverse('question'))
-        return super().post(request, *args, **kwargs)
+        #１行目で、動的なurlのidを取得して、２行目で、それをもとにデータベースに問い合わせ
+        answer_id = self.kwargs.get('pk')
+        answer=Answer.objects.get(id=answer_id)
+        
+        Question=answer.Question_set.all
+        '''
+        ここまでが、情報をもってくる作業
+        '''
+        

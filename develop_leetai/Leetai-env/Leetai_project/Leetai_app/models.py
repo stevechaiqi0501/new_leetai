@@ -22,6 +22,7 @@ class Answer(models.Model):
     datetime = models.DateField(verbose_name='投稿日時',auto_now_add=True)
     photo = models.ImageField(verbose_name="参考画像",blank=True,null=True)
     bestanswer = models.BooleanField(default=False)
+    users = models.ForeignKey(CustomUser,models.PROTECT,default=1)
     
     class Meta:
         verbose_name_plural = 'Answer'
